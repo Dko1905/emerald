@@ -10,7 +10,7 @@ Well, there are many reasons for that, but one of the big ones is the makefile
 and general project structure. The old project lacked any real consistency.
 This "rewrite" uses recursive makefiles that are fully POSIX compliant, and
 also support the `-j` option perfectly. The second reason is the that a lot of
-the code just isn't properly written, some header files miss guards, and
+the code just wasn't properly written, some header files miss guards, and
 sometimes the header definition is just not implemented.
 
 ## Abb1x
