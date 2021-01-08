@@ -18,5 +18,5 @@ This repo is a fork of [Abb1x/emerald](https://github.com/Abb1x/emerald), but
 a lot of code has been changed.
 
 ## License
-License of code is visible in the source code. Most code is under the
+License of code is visible in the source code. My code is under
 [BSD-2-Clause](./LICENSE).
