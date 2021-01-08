@@ -23,22 +23,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef KERNEL_MEM_VMM_H
-#define KERNEL_MEM_VMM_H
+#ifndef KERNEL_PROC_TASK_H
+#define KERNEL_PROC_TASK_H
 #include <kernel/types.h>
+#include <kernel/mem/vmm.h>
 
 typedef struct
 {
-    uintptr_t *pml4;
-} pagemap_t __attribute__((aligned(4096)));
+    uint64_t rax, rbx, rcx, rdx, rsi, rdi, rbp, rsp, r8, r9, r10, r11, r12, r13, r14, r15;
+} regs64_t;
 
-uintptr_t emerald_vmm_lower_half(uintptr_t arg);
-uintptr_t emerald_vmm_higher_half(uintptr_t arg);
+typedef struct
+{
+    uint8_t priority;
+    uint32_t time_slice;
+    regs64_t registers;
+} thread_t;
 
-void emerald_vmm_map_page(pagemap_t *page_map, uintptr_t physical_adress, uint64_t virtual_adress, uintptr_t flags);
-void emerald_vmm_create_pagemap(pagemap_t *map);
-void emerald_vmm_unmap_page(pagemap_t *page_map, uint64_t virtual_adress);
-void emerald_vmm_initialize();
-void emerald_vmm_setbit(uint8_t* num, uint8_t bit, uint8_t state);
+typedef struct process_struct
+{
+    int id;
+    thread_t thread;
+    pagemap_t *pagemap;
+    char *name;
+} process_t;
+
+process_t emerald_proc_task_create_process(int id, uint8_t priority, uintptr_t physical_adress, thread_t thread, char *name);
+void emerald_proc_scheduler_schedule_task();
+void emerald_proc_scheduler_give_cpu(thread_t thread);
 
 #endif

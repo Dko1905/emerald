@@ -40,20 +40,10 @@ static uint64_t *walk_to_page_and_map(uint64_t *current, uint16_t index)
 
     return (uint64_t *)current[index];
 }
-static uintptr_t lower_half(uintptr_t arg)
-{
-    /* offset is defined in link.ld */
-    return arg - 0xffffffff80000000;
-}
-static uintptr_t higher_half(uintptr_t arg)
-{
-    /* offset is defined in link.ld */
-    return arg + 0xffffffff80000000;
-}
 
 void emerald_vmm_map_page(pagemap_t *page_map, uintptr_t physical_adress, uint64_t virtual_adress, uintptr_t flags) {
 	/* get physical adress */
-    physical_adress = lower_half(virtual_adress);
+    physical_adress = emerald_vmm_lower_half(virtual_adress);
 
     /* Paging levels */
     uint16_t level1 = virtual_adress >> 12;
@@ -83,7 +73,7 @@ void emerald_vmm_create_pagemap(pagemap_t *map) {
 }
 
 void emerald_vmm_unmap_page(pagemap_t *page_map, uint64_t virtual_adress) {
-
+	err("emerald_vmm_unmap_page does not exist!");
 }
 
 void emerald_vmm_initialize() {
@@ -94,12 +84,12 @@ void emerald_vmm_initialize() {
 
     uint64_t *root = page_map->pml4;
 
-    uintptr_t root_lower_half = lower_half(*root);
+    uintptr_t root_lower_half = emerald_vmm_lower_half(*root);
 
     /* Maps the first 4 gb */
     for (uint64_t i = 0; i < 0x100000000; i += 0x1000)
     {
-        emerald_vmm_map_page(page_map, i, higher_half(i), 0b11);
+        emerald_vmm_map_page(page_map, i, emerald_vmm_higher_half(i), 0b11);
     }
     /* Enables Paging */
     asm volatile("mov %%cr3,%0" ::"r"(&root_lower_half)

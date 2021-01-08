@@ -23,22 +23,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef KERNEL_MEM_VMM_H
-#define KERNEL_MEM_VMM_H
-#include <kernel/types.h>
+#include <kernel/info.h>
+#include <kernel/asm.h>
 
-typedef struct
-{
-    uintptr_t *pml4;
-} pagemap_t __attribute__((aligned(4096)));
+#include <kernel/proc/pit.h>
 
-uintptr_t emerald_vmm_lower_half(uintptr_t arg);
-uintptr_t emerald_vmm_higher_half(uintptr_t arg);
-
-void emerald_vmm_map_page(pagemap_t *page_map, uintptr_t physical_adress, uint64_t virtual_adress, uintptr_t flags);
-void emerald_vmm_create_pagemap(pagemap_t *map);
-void emerald_vmm_unmap_page(pagemap_t *page_map, uint64_t virtual_adress);
-void emerald_vmm_initialize();
-void emerald_vmm_setbit(uint8_t* num, uint8_t bit, uint8_t state);
-
-#endif
+void emerald_proc_pit_init(uint32_t frequency) {
+	uint16_t divisor = 1193182 / frequency;
+    emerald_asm_outb(0x43, 0x36);
+    emerald_asm_outb(0x40, (uint8_t)divisor & 0xFF);
+    emerald_asm_outb(0x40, (uint8_t)(divisor >> 8) & 0xFF);
+    info("Initialized PIT.");
+}

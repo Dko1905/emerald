@@ -4,7 +4,7 @@
 #include <kernel/types.h>
 #include <kernel/asm.h>
 
-uint8_t asm_inb(uint16_t port) {
+uint8_t emerald_asm_inb(uint16_t port) {
 	uint8_t ret;
 	asm volatile(
 		"inb %1, %0"
@@ -14,7 +14,7 @@ uint8_t asm_inb(uint16_t port) {
 	return ret;
 }
 
-void asm_outb(uint16_t port, uint8_t value) {
+void emerald_asm_outb(uint16_t port, uint8_t value) {
 	asm volatile(
 		"outb %0, %1"
 		:
@@ -23,6 +23,6 @@ void asm_outb(uint16_t port, uint8_t value) {
 	);
 }
 
-void asm_sti() {
+void emerald_asm_sti() {
 	asm volatile("sti");
 }
