@@ -1,9 +1,8 @@
 /*-
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include <sys/types.h>
-
-#include <util/asm.h>
+#include <kernel/types.h>
+#include <kernel/asm.h>
 
 uint8_t asm_inb(uint16_t port) {
 	uint8_t ret;

@@ -2,9 +2,9 @@
 
 include $(CONFIG_MK)
 
-OBJECTS = asm.o info.o
+OBJECTS = pmm.o vmm.o
 
-all: $(OBJECTS)
+all: $(OBJECTS) 
 
 .c.o:
 	$(CC) $(MYCFLAGS) -I $(INC) -c $<

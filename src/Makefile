@@ -11,17 +11,17 @@ all: emerald
 .s.o:
 	$(NASM) $(NASMFLAGS) $< -o $@
 
-util:
-	$(MAKE) -C util CONFIG_MK=$(CONFIG_MK) INC=$(INC) all
+kernel:
+	$(MAKE) -C kernel CONFIG_MK=$(CONFIG_MK) INC=$(INC) all
 libc:
 	$(MAKE) -C libc CONFIG_MK=$(CONFIG_MK) INC=$(INC) all
 
-emerald: $(OBJECTS) util libc
+emerald: $(OBJECTS) kernel libc
 	#$(LD) $(MYLDFLAGS) -T link.ld $(OBJECTS) -o emerald
 
 clean:
-	$(MAKE) -C util CONFIG_MK=$(CONFIG_MK) INC=$(INC) clean
+	$(MAKE) -C kernel CONFIG_MK=$(CONFIG_MK) INC=$(INC) clean
 	$(MAKE) -C libc CONFIG_MK=$(CONFIG_MK) INC=$(INC) clean
 	rm -f emerald $(OBJECTS)
 
-.PHONY: all clean util libc
+.PHONY: all clean kernel libc

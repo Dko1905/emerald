@@ -1,8 +1,8 @@
 /*-
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#ifndef SYS_TYPES_H
-#define SYS_TYPES_H
+#ifndef KERNEL_TYPES_H
+#define KERNEL_TYPES_H
 
 #ifdef __INT8_TYPE__
 typedef __INT8_TYPE__ int8_t;
@@ -49,6 +49,7 @@ typedef __UINT64_TYPE__ uint64_t;
 #endif
 
 typedef uint64_t size_t;
+typedef size_t uintptr_t;
 
 #ifndef NULL
 #define NULL (void *)0

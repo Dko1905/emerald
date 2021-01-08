@@ -1,8 +1,7 @@
 /*-
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#include <sys/types.h>
-
+#include <kernel/types.h>
 #include <libc/string.h>
 
 size_t strlen(const char *s) {

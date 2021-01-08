@@ -6,7 +6,7 @@ NASM = nasm
 
 # flags
 MYCPPFLAGS = # -DVERSION=\"$(VERSION)\"
-MYCFLAGS = -std=gnu99 -Wall -Wextra -pedantic \
+MYCFLAGS = -std=gnu99 -Wall -Wextra -pedantic -Wno-unused-variable \
            $(CPPFLAGS) $(CFLAGS) \
            -fno-pic -mno-sse -mno-sse2 -mno-mmx -mno-80387 -mno-red-zone \
            -mcmodel=kernel -ffreestanding -fno-stack-protector -nostdlib

@@ -1,8 +1,8 @@
 /*-
  * SPDX-License-Identifier: BSD-2-Clause
  */
-#ifndef UTIL_ASM_H
-#define UTIL_ASM_H
+#ifndef KERNEL_ASM_H
+#define KERNEL_ASM_H
 
 #include <sys/types.h>
 

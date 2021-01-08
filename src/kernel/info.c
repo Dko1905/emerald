@@ -2,8 +2,7 @@
  * SPDX-License-Identifier: BSD-2-Clause
  */
 #include <libc/stdarg.h>
-
-#include <util/info.h>
+#include <kernel/info.h>
 
 static const char INFO_PREFIX[] = "INFO: ";
 static const char ERR_PREFIX[] = "ERR: ";

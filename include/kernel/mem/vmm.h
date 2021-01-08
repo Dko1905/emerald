@@ -1,0 +1,41 @@
+/*-
+ * SPDX-License-Identifier: MIT
+ *
+ * MIT License
+ *
+ * Copyright (c) 2020 Abb1x
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+#ifndef KERNEL_MEM_VMM_H
+#define KERNEL_MEM_VMM_H
+#include <kernel/types.h>
+
+typedef struct
+{
+    uintptr_t *pml4;
+} pagemap_t __attribute__((aligned(4096)));
+
+void emerald_vmm_map_page(pagemap_t *page_map, uintptr_t physical_adress, uint64_t virtual_adress, uintptr_t flags);
+void emerald_vmm_create_pagemap(pagemap_t *map);
+void emerald_vmm_unmap_page(pagemap_t *page_map, uint64_t virtual_adress);
+void emerald_vmm_initialize();
+void emerald_vmm_setbit(uint8_t* num, uint8_t bit, uint8_t state);
+
+#endif
