@@ -2,7 +2,7 @@
 
 include $(CONFIG_MK)
 
-OBJECTS = asm.o
+OBJECTS = asm.o info.o
 
 all: $(OBJECTS)
 
