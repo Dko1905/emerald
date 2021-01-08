@@ -104,7 +104,7 @@ void emerald_vmm_initialize() {
     /* Enables Paging */
     asm volatile("mov %%cr3,%0" ::"r"(&root_lower_half)
                  : "memory");
-	info("Mapped kernel.")
+	info("Mapped kernel.");
 }
 
 void emerald_vmm_setbit(uint8_t* num, uint8_t bit, uint8_t state) {

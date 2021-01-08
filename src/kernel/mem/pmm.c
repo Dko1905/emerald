@@ -58,7 +58,7 @@ uint32_t emerald_pmm_allocate_block() {
 }
 
 void emerald_pmm_free_block(uint32_t blk_num) {
-	CLEARBIT(block_num);
+	CLEARBIT(blk_num);
 }
 
 uint32_t emerald_pmm_first_free_block() {
